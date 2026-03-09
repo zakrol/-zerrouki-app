@@ -1,680 +1,818 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"/>
-<meta name="mobile-web-app-capable" content="yes"/>
-<meta name="apple-mobile-web-app-capable" content="yes"/>
-<meta name="theme-color" content="#1877F2"/>
-<title>ديون زروقي</title>
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet"/>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZEROUKI مناوبة</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
 <style>
-*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
-:root{
-  --blue:#1877F2;--blue2:#166FE5;--blue3:#E7F3FF;--blue4:#0a4fa0;
-  --green:#42b72a;--red:#fa3e3e;--gold:#f7c948;
-  --bg:#f0f2f5;--card:#fff;--border:#dde1e7;
-  --txt:#050505;--sub:#65676b;--mut:#8a8d91;
-  --hdr:#fff;--nav:#fff;--inp:#f0f2f5;
-  --shadow:0 1px 3px rgba(0,0,0,0.12);
-}
-.dark{
-  --bg:#18191a;--card:#242526;--border:#3a3b3c;
-  --txt:#e4e6eb;--sub:#b0b3b8;--mut:#6a6b6c;
-  --hdr:#242526;--nav:#242526;--inp:#3a3b3c;
-  --blue3:rgba(24,119,242,0.15);
-  --shadow:0 1px 3px rgba(0,0,0,0.35);
-}
-body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--txt);overflow-x:hidden;-webkit-font-smoothing:antialiased;}
-::-webkit-scrollbar{width:3px;} ::-webkit-scrollbar-thumb{background:var(--blue);border-radius:2px;}
-.hov:active{opacity:0.85;transform:scale(0.98);}
-.bs{transition:transform 0.15s;} .bs:active{transform:scale(0.95);}
-@keyframes fu{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}} .fu{animation:fu 0.28s ease forwards;}
-@keyframes sd{from{opacity:0;transform:translateY(50px)}to{opacity:1;transform:translateY(0)}} .sd{animation:sd 0.28s cubic-bezier(.2,.8,.4,1) forwards;}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.35}} .pulse{animation:pulse 2s infinite;}
-@keyframes ti{from{opacity:0;transform:translateX(-50%) translateY(14px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}
-.prog{height:8px;border-radius:999px;overflow:hidden;background:var(--border);}
-.pfill{height:100%;border-radius:999px;transition:width 1.1s cubic-bezier(.4,0,.2,1);}
-.ov{position:fixed;inset:0;background:rgba(0,0,0,0.72);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);z-index:500;display:flex;align-items:flex-end;justify-content:center;}
-.sheet{width:100%;max-width:500px;border-radius:20px 20px 0 0;max-height:90vh;overflow-y:auto;padding:20px 16px 34px;background:var(--card);}
-.pill{padding:6px 14px;border-radius:999px;border:none;cursor:pointer;font-family:'Cairo',sans-serif;font-weight:700;font-size:11px;transition:all 0.18s;white-space:nowrap;}
-input,select{-webkit-appearance:none;appearance:none;font-family:'Cairo',sans-serif;}
-input[type=date]::-webkit-calendar-picker-indicator{filter:invert(0.5);}
-select option{background:var(--card);color:var(--txt);}
-.cbtn{display:flex;align-items:center;gap:14px;padding:14px 16px;border-radius:14px;border:none;cursor:pointer;font-family:'Cairo',sans-serif;font-weight:700;font-size:14px;transition:transform 0.15s;width:100%;margin-bottom:10px;color:#fff;}
-.cbtn:active{transform:scale(0.97);}
-.fb-card{background:var(--card);border-radius:10px;box-shadow:var(--shadow);padding:12px;margin-bottom:10px;border:1px solid var(--border);}
+  :root {
+    --P: #00ff88;
+    --N: #00c8ff;
+    --R: #8888aa;
+    --gold: #ffd700;
+    --accent: #ff3cac;
+    --bg1: #020b14;
+    --bg2: #050f1c;
+    --glow-P: 0 0 20px #00ff8866;
+    --glow-N: 0 0 20px #00c8ff66;
+    --glow-R: 0 0 10px #8888aa33;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Cairo', sans-serif;
+    background: var(--bg1);
+    color: white;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ── ANIMATED BACKGROUND ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 50% at 10% 20%, #003a5522 0%, transparent 60%),
+      radial-gradient(ellipse 60% 40% at 90% 80%, #00234422 0%, transparent 60%),
+      radial-gradient(ellipse 40% 30% at 50% 50%, #ff3cac08 0%, transparent 60%);
+    animation: bgPulse 8s ease-in-out infinite alternate;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  @keyframes bgPulse {
+    from { opacity: 0.6; }
+    to   { opacity: 1; }
+  }
+
+  /* grid lines overlay */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0,200,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,200,255,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ── HEADER ── */
+  header {
+    position: relative;
+    z-index: 10;
+    padding: 24px 20px 16px;
+    background: linear-gradient(180deg, #020e18 0%, transparent 100%);
+    text-align: center;
+  }
+
+  .header-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(22px, 5vw, 38px);
+    font-weight: 900;
+    letter-spacing: 4px;
+    background: linear-gradient(90deg, #00c8ff, #00ff88, #ff3cac, #ffd700);
+    background-size: 300% 100%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: gradShift 4s linear infinite;
+    text-shadow: none;
+    filter: drop-shadow(0 0 20px #00c8ff88);
+  }
+
+  @keyframes gradShift {
+    0%   { background-position: 0% 50%; }
+    100% { background-position: 300% 50%; }
+  }
+
+  .header-sub {
+    font-size: 13px;
+    color: #00ff8877;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+
+  /* ── TODAY TIKTOK CARD ── */
+  .tiktok-card {
+    position: relative;
+    z-index: 10;
+    margin: 16px auto;
+    max-width: 420px;
+    padding: 3px;
+    border-radius: 22px;
+    background: linear-gradient(135deg, #00c8ff, #ff3cac, #ffd700, #00ff88, #00c8ff);
+    background-size: 300% 300%;
+    animation: borderSpin 3s linear infinite;
+    box-shadow: 0 0 40px #00c8ff44, 0 0 80px #ff3cac22;
+  }
+
+  @keyframes borderSpin {
+    0%   { background-position: 0% 50%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  .tiktok-inner {
+    background: #060e18;
+    border-radius: 20px;
+    padding: 18px 22px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .tiktok-inner::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: conic-gradient(from 0deg, transparent 0deg, #00c8ff08 60deg, transparent 120deg);
+    animation: scanRotate 6s linear infinite;
+  }
+
+  @keyframes scanRotate {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+  }
+
+  .tiktok-date {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 13px;
+    color: #ffd700;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .tiktok-label {
+    font-size: 11px;
+    color: #ffffff55;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .tiktok-teams {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .tiktok-team {
+    text-align: center;
+    padding: 12px 6px;
+    border-radius: 14px;
+    background: #0d1e2e;
+    border: 1px solid #ffffff11;
+    transition: transform 0.3s;
+    animation: teamPop 0.5s ease backwards;
+  }
+
+  .tiktok-team:nth-child(1) { animation-delay: 0.1s; }
+  .tiktok-team:nth-child(2) { animation-delay: 0.2s; }
+  .tiktok-team:nth-child(3) { animation-delay: 0.3s; }
+  .tiktok-team:nth-child(4) { animation-delay: 0.4s; }
+
+  @keyframes teamPop {
+    from { transform: scale(0.7); opacity: 0; }
+    to   { transform: scale(1); opacity: 1; }
+  }
+
+  .tiktok-team:hover { transform: scale(1.08); }
+
+  .team-letter {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 11px;
+    color: #ffffff66;
+    margin-bottom: 6px;
+  }
+
+  .team-shift {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 22px;
+    font-weight: 900;
+  }
+
+  .shift-P .team-shift { color: var(--P); text-shadow: var(--glow-P); }
+  .shift-N .team-shift { color: var(--N); text-shadow: var(--glow-N); }
+  .shift-R .team-shift { color: var(--R); text-shadow: var(--glow-R); }
+
+  .shift-P { box-shadow: inset 0 0 15px #00ff8822, 0 0 8px #00ff8844; }
+  .shift-N { box-shadow: inset 0 0 15px #00c8ff22, 0 0 8px #00c8ff44; }
+  .shift-R { box-shadow: inset 0 0 10px #88888822; }
+
+  .team-time {
+    font-size: 9px;
+    color: #ffffff33;
+    margin-top: 4px;
+  }
+
+  /* ── LIVE CLOCK ── */
+  .live-clock {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    margin: 6px 0 14px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 20px;
+    color: #00c8ff;
+    letter-spacing: 4px;
+    text-shadow: 0 0 15px #00c8ff88;
+    animation: clockPulse 1s ease-in-out infinite alternate;
+  }
+
+  @keyframes clockPulse {
+    from { opacity: 0.8; }
+    to   { opacity: 1; }
+  }
+
+  /* ── CONTROLS ── */
+  .controls {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 10px 20px;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    padding: 10px 20px;
+    border: 1px solid #00c8ff44;
+    border-radius: 50px;
+    background: #0a1e30;
+    color: #00c8ff;
+    font-family: 'Cairo', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s;
+    letter-spacing: 1px;
+    backdrop-filter: blur(5px);
+  }
+
+  .btn:hover {
+    background: #00c8ff;
+    color: #020b14;
+    box-shadow: 0 0 20px #00c8ff88;
+    transform: translateY(-2px);
+  }
+
+  .btn.today-btn {
+    background: linear-gradient(90deg, #ff3cac22, #ffd70022);
+    border-color: #ffd70066;
+    color: #ffd700;
+  }
+
+  .btn.today-btn:hover {
+    background: linear-gradient(90deg, #ff3cac, #ffd700);
+    color: #020b14;
+    box-shadow: 0 0 20px #ffd70088;
+  }
+
+  /* ── MONTH DISPLAY ── */
+  .month-display {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    margin: 8px 0 16px;
+  }
+
+  .month-name {
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(18px, 4vw, 28px);
+    font-weight: 700;
+    color: white;
+    letter-spacing: 3px;
+  }
+
+  .year-badge {
+    display: inline-block;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 11px;
+    background: linear-gradient(90deg, #ff3cac, #ffd700);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: 4px;
+    margin-left: 10px;
+  }
+
+  /* ── DAY HEADERS ── */
+  .day-headers {
+    position: relative;
+    z-index: 10;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 6px;
+    padding: 0 14px 6px;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .day-header {
+    text-align: center;
+    font-size: 10px;
+    font-family: 'Orbitron', sans-serif;
+    color: #ffffff33;
+    letter-spacing: 1px;
+    padding: 4px 0;
+  }
+
+  /* ── CALENDAR GRID ── */
+  .calendar-wrap {
+    position: relative;
+    z-index: 10;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 0 14px 14px;
+  }
+
+  .calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 6px;
+  }
+
+  .day {
+    aspect-ratio: 1;
+    background: #0a1e30;
+    border: 1px solid #ffffff0d;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .day::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #ffffff08, transparent);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .day:hover::before { opacity: 1; }
+  .day:hover {
+    border-color: #00c8ff44;
+    transform: scale(1.1) translateY(-2px);
+    box-shadow: 0 8px 25px #00000066, 0 0 15px #00c8ff22;
+    z-index: 5;
+  }
+
+  .day-num {
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(11px, 2.5vw, 15px);
+    font-weight: 700;
+    color: white;
+    line-height: 1;
+  }
+
+  .day-dots {
+    display: flex;
+    gap: 2px;
+  }
+
+  .dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+  }
+
+  .dot-P { background: var(--P); box-shadow: 0 0 4px var(--P); }
+  .dot-N { background: var(--N); box-shadow: 0 0 4px var(--N); }
+  .dot-R { background: var(--R); }
+
+  /* TODAY highlight */
+  .day.is-today {
+    background: linear-gradient(135deg, #002233, #001a28);
+    border: 2px solid #ffd700;
+    box-shadow:
+      0 0 20px #ffd70066,
+      0 0 40px #ffd70033,
+      inset 0 0 20px #ffd70011;
+    animation: todayPulse 2s ease-in-out infinite;
+  }
+
+  .day.is-today .day-num { color: #ffd700; text-shadow: 0 0 10px #ffd70088; }
+
+  @keyframes todayPulse {
+    0%, 100% { box-shadow: 0 0 20px #ffd70066, 0 0 40px #ffd70033, inset 0 0 20px #ffd70011; }
+    50%       { box-shadow: 0 0 30px #ffd700aa, 0 0 60px #ffd70055, inset 0 0 30px #ffd70022; }
+  }
+
+  .today-star {
+    position: absolute;
+    top: 3px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 8px;
+    animation: starSpin 2s linear infinite;
+  }
+
+  @keyframes starSpin {
+    from { transform: translateX(-50%) rotate(0deg); }
+    to   { transform: translateX(-50%) rotate(360deg); }
+  }
+
+  /* SELECTED */
+  .day.selected {
+    background: linear-gradient(135deg, #001e33, #002d4d);
+    border-color: #00c8ff;
+    box-shadow: 0 0 15px #00c8ff55;
+  }
+
+  /* ── DETAIL CARD ── */
+  .detail-card {
+    position: relative;
+    z-index: 10;
+    max-width: 420px;
+    margin: 14px auto;
+    padding: 20px;
+    background: #060e18;
+    border-radius: 20px;
+    border: 1px solid #ffffff11;
+    box-shadow: 0 10px 40px #00000055;
+    font-size: 16px;
+    text-align: center;
+    color: #ffffff66;
+  }
+
+  .detail-card h3 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 16px;
+    color: #ffd700;
+    margin-bottom: 16px;
+    letter-spacing: 2px;
+  }
+
+  .detail-teams-grid {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 10px;
+    margin-top: 10px;
+  }
+
+  .detail-team-box {
+    background: #0d1e2e;
+    border-radius: 14px;
+    padding: 12px 6px;
+    border: 1px solid #ffffff11;
+    transition: transform 0.3s;
+  }
+
+  .detail-team-box:hover { transform: scale(1.05); }
+
+  .dt-letter {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 10px;
+    color: #ffffff44;
+    margin-bottom: 6px;
+  }
+
+  .dt-shift {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 26px;
+    font-weight: 900;
+  }
+
+  .dt-P .dt-shift { color: var(--P); text-shadow: var(--glow-P); }
+  .dt-N .dt-shift { color: var(--N); text-shadow: var(--glow-N); }
+  .dt-R .dt-shift { color: var(--R); text-shadow: var(--glow-R); }
+
+  .dt-P { box-shadow: inset 0 0 15px #00ff8822, 0 0 10px #00ff8833; }
+  .dt-N { box-shadow: inset 0 0 15px #00c8ff22, 0 0 10px #00c8ff33; }
+
+  .dt-time {
+    font-size: 10px;
+    color: #ffffff22;
+    margin-top: 4px;
+  }
+
+  /* ── LEGEND ── */
+  .legend {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin: 10px 20px;
+    flex-wrap: wrap;
+  }
+
+  .leg-item {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 12px;
+    color: #ffffff88;
+    padding: 6px 14px;
+    background: #0a1e30;
+    border-radius: 50px;
+    border: 1px solid #ffffff11;
+  }
+
+  .leg-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+  }
+
+  .leg-P { background: var(--P); box-shadow: 0 0 6px var(--P); }
+  .leg-N { background: var(--N); box-shadow: 0 0 6px var(--N); }
+  .leg-R { background: var(--R); }
+
+  /* ── FOOTER ── */
+  footer {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    padding: 20px;
+    font-size: 11px;
+    color: #ffffff22;
+    letter-spacing: 2px;
+    font-family: 'Orbitron', sans-serif;
+  }
+
+  /* ── ENTRANCE ANIMATIONS ── */
+  .calendar-wrap { animation: fadeUp 0.5s ease backwards; }
+  .tiktok-card   { animation: fadeUp 0.4s ease backwards; }
+
+  @keyframes fadeUp {
+    from { transform: translateY(30px); opacity: 0; }
+    to   { transform: translateY(0); opacity: 1; }
+  }
+
+  /* ── SCAN LINE ── */
+  .scanline {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, #00c8ff55, transparent);
+    animation: scanDown 4s linear infinite;
+    pointer-events: none;
+    z-index: 999;
+  }
+
+  @keyframes scanDown {
+    from { top: -3px; }
+    to   { top: 100vh; }
+  }
 </style>
 </head>
 <body>
-<div id="app"></div>
+
+<div class="scanline"></div>
+
+<header>
+  <div class="header-title">⚡ ZEROUKI مناوبة ⚡</div>
+  <div class="header-sub">Smart Shift Planner · 2026</div>
+</header>
+
+<div class="live-clock" id="clock">00:00:00</div>
+
+<!-- TikTok TODAY card -->
+<div class="tiktok-card" id="todayCard">
+  <div class="tiktok-inner">
+    <div class="tiktok-label">▶ اليوم الحالي — TODAY</div>
+    <div class="tiktok-date" id="todayDateLabel"></div>
+    <div class="tiktok-teams" id="todayTeams"></div>
+  </div>
+</div>
+
+<div class="controls">
+  <button class="btn" onclick="prevMonth()">◀ السابق</button>
+  <button class="btn today-btn" onclick="today()">★ اليوم</button>
+  <button class="btn" onclick="nextMonth()">التالي ▶</button>
+</div>
+
+<div class="month-display">
+  <span class="month-name" id="monthName"></span>
+  <span class="year-badge" id="yearBadge"></span>
+</div>
+
+<div class="day-headers">
+  <div class="day-header">أحد</div>
+  <div class="day-header">اثن</div>
+  <div class="day-header">ثلاث</div>
+  <div class="day-header">أرب</div>
+  <div class="day-header">خمس</div>
+  <div class="day-header">جمع</div>
+  <div class="day-header">سبت</div>
+</div>
+
+<div class="calendar-wrap">
+  <div class="calendar" id="calendar"></div>
+</div>
+
+<div class="detail-card" id="details">
+  <span style="font-size:13px;letter-spacing:2px;font-family:Orbitron,sans-serif;color:#ffffff33;">
+    ◈ اضغط على يوم لعرض تفاصيل الفواج ◈
+  </span>
+</div>
+
+<div class="legend">
+  <div class="leg-item"><div class="leg-dot leg-P"></div> P — نهار 07:00→17:00</div>
+  <div class="leg-item"><div class="leg-dot leg-N"></div> N — ليل 17:00→07:00</div>
+  <div class="leg-item"><div class="leg-dot leg-R"></div> R — راحة</div>
+</div>
+
+<footer>© ZEROUKI SHIFT PLANNER · 2026</footer>
 
 <script>
-const VER="2.1.0";
-const SK="zerrouki-v5";
-const PHONE="+213776728421";
-
-const ld=()=>{try{return JSON.parse(localStorage.getItem(SK)||"{}");}catch{return{};}};
-const sv=d=>{try{localStorage.setItem(SK,JSON.stringify(d));}catch{}};
-
-const MAR=["جانفي","فيفري","مارس","أفريل","ماي","جوان","جويلية","أوت","سبتمبر","أكتوبر","نوفمبر","ديسمبر"];
-const MFR=["Janvier","Février","Mars","Avril","Mai","Juin","Juillet","Août","Septembre","Octobre","Novembre","Décembre"];
-
-const T={
-  ar:{app:"ديون زروقي",sub:"مدير الديون الذكي",ver:"الإصدار",
-    dash:"الرئيسية",debts:"الديون",exp:"المصاريف",hist:"السجل",cnt:"تواصل",
-    totDebt:"إجمالي الديون",totPaid:"تم الدفع",rem:"المتبقي",paid:"مدفوع",
-    addPay:"تسجيل دفعة",newExp:"مصروف جديد",amt:"المبلغ",month:"الشهر",
-    year:"السنة",note:"ملاحظة",notePh:"مثال: دفعة شهر جانفي",
-    okPay:"✅ تأكيد الدفعة",okExp:"✅ تأكيد المصروف",
-    payHist:"سجل الدفعات",fullHist:"السجل الكامل",
-    noPays:"لا توجد دفعات بعد",noExps:"لا توجد مصاريف",
-    todayExp:"مصاريف اليوم",thisMonth:"هذا الشهر",
-    active:"نشط الآن",wait:"في الانتظار",done:"مكتمل",
-    monthsLeft:"شهر متبقي",origAmt:"المبلغ الأصلي",pays:"دفعة",
-    contDesc:"تواصل عبر:",call:"اتصال مباشر",
-    food:"مواد غذائية",veggie:"خضر وفواكه",clothes:"ملابس",other:"أخرى",
-    typ:"النوع",dat:"التاريخ",dark:"الوضع الليلي",light:"الوضع النهاري",
-    cur:"العملة",lang:"اللغة",
-    amtErr:"أدخل مبلغاً صحيحاً",overErr:"المبلغ أكبر من المتبقي!",
-    okSave:"✅ تم تسجيل الدفعة",okExp2:"✅ تم تسجيل المصروف",
-    next:"انتهيت! بدأ دور",set:"الإعدادات",
-    notifEn:"تفعيل التنبيهات",notifOn:"✅ تنبيهات مفعّلة",
-    lastPay:"آخر دفعة",search:"بحث...",del:"حذف",
-  },
-  fr:{app:"Dettes Zerrouki",sub:"Gestionnaire intelligent",ver:"Version",
-    dash:"Accueil",debts:"Dettes",exp:"Dépenses",hist:"Historique",cnt:"Contact",
-    totDebt:"Total dettes",totPaid:"Payé",rem:"Restant",paid:"Payé",
-    addPay:"Enregistrer paiement",newExp:"Nouvelle dépense",amt:"Montant",month:"Mois",
-    year:"Année",note:"Note",notePh:"Ex: paiement janvier",
-    okPay:"✅ Confirmer paiement",okExp:"✅ Confirmer dépense",
-    payHist:"Historique",fullHist:"Historique complet",
-    noPays:"Aucun paiement",noExps:"Aucune dépense",
-    todayExp:"Dépenses aujourd'hui",thisMonth:"Ce mois",
-    active:"Actif",wait:"En attente",done:"Terminé",
-    monthsLeft:"mois restants",origAmt:"Montant initial",pays:"paiement",
-    contDesc:"Contacter via:",call:"Appeler",
-    food:"Alimentation",veggie:"Légumes & fruits",clothes:"Vêtements",other:"Autre",
-    typ:"Type",dat:"Date",dark:"Mode sombre",light:"Mode clair",
-    cur:"Devise",lang:"Langue",
-    amtErr:"Entrez un montant valide",overErr:"Montant trop élevé!",
-    okSave:"✅ Paiement enregistré",okExp2:"✅ Dépense enregistrée",
-    next:"Terminé! Au tour de",set:"Paramètres",
-    notifEn:"Activer notifications",notifOn:"✅ Notifications activées",
-    lastPay:"Dernier paiement",search:"Rechercher...",del:"Supprimer",
-  }
-};
-
-const D0=[
-  {id:"faqir",name:"فقير محمد",nameFr:"Faquir Mohamed",icon:"👨",total:35000000,monthly:1000000,color:"#1877F2",active:true,order:1},
-  {id:"moussaoui",name:"موساوي فاطمة",nameFr:"Moussaoui Fatima",icon:"👩",total:26000000,monthly:1000000,color:"#42b72a",active:false,order:2},
-  {id:"sabria",name:"زروقي صابرية",nameFr:"Zerrouki Sabria",icon:"👩‍🦱",total:5000000,monthly:1000000,color:"#f7c948",active:false,order:3},
-  {id:"tawfiq",name:"زروقي توفيق",nameFr:"Zerrouki Tawfiq",icon:"👨‍🦰",total:5000000,monthly:1000000,color:"#fa3e3e",active:false,order:4},
-];
-const CATS=[
-  {id:"food",icon:"🛒",color:"#1877F2"},
-  {id:"veggie",icon:"🥦",color:"#42b72a"},
-  {id:"clothes",icon:"👗",color:"#e91e8c"},
-  {id:"other",icon:"📦",color:"#8a8d91"},
+const months = [
+  "Janvier","Février","Mars","Avril","Mai","Juin",
+  "Juillet","Août","Septembre","Octobre","Novembre","Décembre"
 ];
 
-function fmt(a,cur,lang){
-  if(cur==="eur")return(a*0.0068).toFixed(2)+" €";
-  const s=lang==="ar"?"دج":"DA";
-  if(a>=1000000)return(a/1000000).toFixed(1)+"م "+s;
-  if(a>=1000)return(a/1000).toFixed(0)+"ك "+s;
-  return a.toLocaleString()+" "+s;
-}
-const toDay=()=>new Date().toISOString().split("T")[0];
-const toMonth=()=>new Date().toISOString().slice(0,7);
+const monthsAr = [
+  "جانفي","فيفري","مارس","أفريل","ماي","جوان",
+  "جويلية","أوت","سبتمبر","أكتوبر","نوفمبر","ديسمبر"
+];
 
-// ── STATE ──────────────────────────────────────────────────────────────────
-const st0=ld();
-let S={
-  tab:"dash",lang:st0.lang||"ar",dark:st0.dark||false,cur:st0.cur||"dzd",
-  debts:st0.debts||JSON.parse(JSON.stringify(D0)),
-  pays:st0.pays||{},exps:st0.exps||[],notif:st0.notif||false,
-  payMod:null,expMod:false,setMod:false,
-  payF:{amount:"",note:"",month:new Date().getMonth()+1,year:new Date().getFullYear()},
-  expF:{cat:"food",amount:"",note:"",date:toDay()},
-  toast:null,search:"",
-  _rendered:false,
-};
+const cycle = ["P","P","N","N","R","R","R","R"];
+const teams = { A:1, B:3, C:5, D:7 };
 
-function persist(){sv({lang:S.lang,dark:S.dark,cur:S.cur,debts:S.debts,pays:S.pays,exps:S.exps,notif:S.notif});}
+const EPOCH = new Date(2024, 0, 1); // reference date: 1 Jan 2024
 
-// ── CLOCK: only updates clock elements, NO full re-render ──────────────────
-function tickClock(){
-  const now=new Date();
-  const rtl=S.lang==="ar";
-  const tEl=document.getElementById("clock-time");
-  const dEl=document.getElementById("clock-date");
-  if(tEl)tEl.textContent=now.toLocaleTimeString(rtl?"ar-DZ":"fr-DZ",{hour:"2-digit",minute:"2-digit",second:"2-digit"});
-  if(dEl)dEl.textContent=now.toLocaleDateString(rtl?"ar-DZ":"fr-DZ",{weekday:"long",year:"numeric",month:"long",day:"numeric"});
-}
-setInterval(tickClock,1000);
+let currentMonth = new Date().getMonth();
+let currentYear  = new Date().getFullYear();
+const todayDate  = new Date();
 
-// ── TOAST ──────────────────────────────────────────────────────────────────
-function showToast(msg,type="ok"){
-  S.toast={msg,type};
-  // update only toast element
-  let tEl=document.getElementById("toast-el");
-  if(!tEl){tEl=document.createElement("div");tEl.id="toast-el";document.getElementById("app").appendChild(tEl);}
-  tEl.style.cssText=`position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:${type==="err"?"rgba(220,38,38,0.96)":"rgba(66,183,42,0.96)"};border-radius:999px;padding:11px 22px;color:#fff;font-weight:700;font-size:13px;font-family:Cairo,sans-serif;z-index:600;white-space:nowrap;box-shadow:0 8px 30px rgba(0,0,0,0.25);animation:ti 0.28s ease;pointer-events:none;`;
-  tEl.textContent=msg;
-  tEl.style.display="block";
-  if(S._toastTimer)clearTimeout(S._toastTimer);
-  S._toastTimer=setTimeout(()=>{if(tEl)tEl.style.display="none";},3000);
+function daysSinceEpoch(year, month, day) {
+  const d = new Date(year, month, day);
+  return Math.floor((d - EPOCH) / 86400000);
 }
 
-// ── COMPUTED ───────────────────────────────────────────────────────────────
-function getPaid(id){return Object.values(S.pays[id]||{}).reduce((s,v)=>s+v.amount,0);}
-function getRem(id){const d=S.debts.find(x=>x.id===id);return Math.max(0,d.total-getPaid(id));}
-function getProg(id){const d=S.debts.find(x=>x.id===id);return Math.min(100,(getPaid(id)/d.total)*100);}
-function getPL(id){return Object.entries(S.pays[id]||{}).sort((a,b)=>b[0].localeCompare(a[0]));}
-function debtName(d){return S.lang==="ar"?d.name:d.nameFr;}
-function catLbl(id){return T[S.lang][id]||id;}
-function totals(){
-  const tot=S.debts.reduce((s,d)=>s+d.total,0);
-  const totPaid=S.debts.reduce((s,d)=>s+getPaid(d.id),0);
-  return{tot,totPaid,totRem:tot-totPaid};
+function getShift(team, year, month, day) {
+  const d = daysSinceEpoch(year, month, day);
+  return cycle[(d + teams[team] + 2) % 8];
 }
 
-// ── ACTIONS ────────────────────────────────────────────────────────────────
-function doPayment(){
-  const t=T[S.lang],amt=Number(S.payF.amount);
-  if(!amt||isNaN(amt)){showToast(t.amtErr,"err");return;}
-  const rem=getRem(S.payMod.id);
-  if(amt>rem){showToast(t.overErr,"err");return;}
-  const key=`${S.payF.year}-${String(S.payF.month).padStart(2,"0")}`;
-  if(!S.pays[S.payMod.id])S.pays[S.payMod.id]={};
-  S.pays[S.payMod.id][key]={amount:amt,note:S.payF.note,date:new Date().toISOString()};
-  const np2=Object.values(S.pays[S.payMod.id]).reduce((s,v)=>s+v.amount,0);
-  const debt=S.payMod;
-  if(np2>=debt.total){
-    const nx=S.debts.find(d=>d.order===debt.order+1);
-    if(nx&&!nx.active){nx.active=true;setTimeout(()=>showToast(`🎉 ${T[S.lang].next} ${debtName(nx)}!`),100);}
-  }
-  S.payMod=null;
-  S.payF={amount:"",note:"",month:new Date().getMonth()+1,year:new Date().getFullYear()};
-  persist();
-  const msg=T[S.lang].okSave;
-  render();
-  setTimeout(()=>showToast(msg),50);
-}
-function doExp(){
-  const t=T[S.lang];
-  if(!S.expF.amount||isNaN(S.expF.amount)){showToast(t.amtErr,"err");return;}
-  S.exps.unshift({id:Date.now(),...S.expF,amount:Number(S.expF.amount)});
-  S.expMod=false;
-  S.expF={cat:"food",amount:"",note:"",date:toDay()};
-  persist();
-  const msg=t.okExp2;
-  render();
-  setTimeout(()=>showToast(msg),50);
-}
-function delExp(id){S.exps=S.exps.filter(e=>e.id!==id);persist();render();}
-function reqNotif(){
-  if("Notification"in window){
-    Notification.requestPermission().then(p=>{
-      if(p==="granted"){S.notif=true;persist();showToast("🔔 "+T[S.lang].notifOn);}
-    });
-  }
+function shiftTime(s) {
+  if (s === 'P') return '07:00→17:00';
+  if (s === 'N') return '17:00→07:00';
+  return '—';
 }
 
-// ── DOM HELPERS ────────────────────────────────────────────────────────────
-function h(tag,attrs,...ch){
-  const el=document.createElement(tag);
-  if(attrs)Object.entries(attrs).forEach(([k,v])=>{
-    if(k==="style"&&typeof v==="object"){Object.assign(el.style,v);}
-    else if(k.startsWith("on")&&typeof v==="function"){el.addEventListener(k.slice(2).toLowerCase(),v);}
-    else if(k==="className"){el.className=v;}
-    else el.setAttribute(k,v);
+// Live clock
+function updateClock() {
+  const n = new Date();
+  const h = String(n.getHours()).padStart(2,'0');
+  const m = String(n.getMinutes()).padStart(2,'0');
+  const s = String(n.getSeconds()).padStart(2,'0');
+  document.getElementById('clock').textContent = `${h}:${m}:${s}`;
+}
+setInterval(updateClock, 1000);
+updateClock();
+
+// TikTok today card
+function renderTodayCard() {
+  const t = new Date();
+  const d = t.getDate(), mo = t.getMonth(), yr = t.getFullYear();
+  document.getElementById('todayDateLabel').textContent =
+    `${d} ${months[mo]} ${yr}`;
+  const container = document.getElementById('todayTeams');
+  container.innerHTML = '';
+  ['A','B','C','D'].forEach(team => {
+    const s = getShift(team, yr, mo, d);
+    const div = document.createElement('div');
+    div.className = `tiktok-team shift-${s}`;
+    div.innerHTML = `
+      <div class="team-letter">الفوج ${team}</div>
+      <div class="team-shift">${s}</div>
+      <div class="team-time">${shiftTime(s)}</div>
+    `;
+    container.appendChild(div);
   });
-  ch.flat(10).forEach(c=>{
-    if(c==null||c===false||c===undefined)return;
-    el.appendChild(typeof c==="string"||typeof c==="number"?document.createTextNode(String(c)):c);
+}
+
+function generateCalendar() {
+  const cal = document.getElementById('calendar');
+  cal.innerHTML = '';
+  document.getElementById('monthName').textContent =
+    months[currentMonth] + ' — ' + monthsAr[currentMonth];
+  document.getElementById('yearBadge').textContent = currentYear;
+
+  const daysInMonth = new Date(currentYear, currentMonth+1, 0).getDate();
+  const firstDay = new Date(currentYear, currentMonth, 1).getDay(); // 0=Sun
+
+  // empty cells before first day
+  for (let i = 0; i < firstDay; i++) {
+    const empty = document.createElement('div');
+    empty.style.aspectRatio = '1';
+    cal.appendChild(empty);
+  }
+
+  for (let d = 1; d <= daysInMonth; d++) {
+    const div = document.createElement('div');
+    div.className = 'day';
+    const isToday =
+      d === todayDate.getDate() &&
+      currentMonth === todayDate.getMonth() &&
+      currentYear === todayDate.getFullYear();
+
+    if (isToday) {
+      div.classList.add('is-today');
+      div.innerHTML = `<div class="today-star">★</div>`;
+    }
+
+    // dots for A B C D
+    const shifts = ['A','B','C','D'].map(t => getShift(t, currentYear, currentMonth, d));
+    const dotsHtml = shifts.map(s => `<div class="dot dot-${s}"></div>`).join('');
+
+    div.innerHTML += `<div class="day-num">${d}</div><div class="day-dots">${dotsHtml}</div>`;
+
+    div.addEventListener('click', () => {
+      // remove old selected
+      document.querySelectorAll('.day.selected').forEach(el => el.classList.remove('selected'));
+      div.classList.add('selected');
+      showDetails(d);
+    });
+
+    // auto-click today
+    if (isToday) {
+      setTimeout(() => { div.click(); }, 300);
+    }
+
+    cal.appendChild(div);
+  }
+}
+
+function showDetails(d) {
+  const container = document.getElementById('details');
+  const dayName = new Date(currentYear, currentMonth, d)
+    .toLocaleDateString('ar-DZ', { weekday:'long' });
+
+  let html = `<h3>★ ${d} ${months[currentMonth]} — ${dayName}</h3><div class="detail-teams-grid">`;
+
+  ['A','B','C','D'].forEach(team => {
+    const s = getShift(team, currentYear, currentMonth, d);
+    html += `
+      <div class="detail-team-box dt-${s}">
+        <div class="dt-letter">الفوج ${team}</div>
+        <div class="dt-shift">${s}</div>
+        <div class="dt-time">${shiftTime(s)}</div>
+      </div>`;
   });
-  return el;
-}
-function inp2(val,type,ph,onChange,xStyle={}){
-  const el=h("input",{type:type||"text",placeholder:ph||"",style:{width:"100%",background:"var(--inp)",border:"1px solid var(--border)",borderRadius:8,padding:"10px 14px",color:"var(--txt)",fontSize:13,outline:"none",...xStyle}});
-  el.value=val||"";
-  el.addEventListener("input",e=>onChange(e.target.value));
-  return el;
-}
-function sel2(val,opts,onChange){
-  const el=h("select",{style:{width:"100%",background:"var(--inp)",border:"1px solid var(--border)",borderRadius:8,padding:"10px 14px",color:"var(--txt)",fontSize:13,outline:"none"}},
-    opts.map(([v,l])=>{const o=h("option",{value:v},l);if(v==val)o.selected=true;return o;})
-  );
-  el.addEventListener("change",e=>onChange(e.target.value));return el;
-}
-function lbl2(text){return h("div",{style:{fontSize:11,color:"var(--sub)",marginBottom:5,fontWeight:600}},text);}
-function progBar(pct,color){
-  return h("div",{className:"prog"},h("div",{className:"pfill",style:{width:`${pct}%`,background:`linear-gradient(90deg,${color},${color}cc)`}}));
-}
-function badge2(text,bg,color){
-  return h("span",{style:{background:bg,color,padding:"3px 10px",borderRadius:999,fontSize:10,fontWeight:700}},text);
-}
-function sheetMod(children,onClose){
-  const ov=h("div",{className:"ov"});
-  ov.addEventListener("click",e=>{if(e.target===ov)onClose();});
-  const sh=h("div",{className:"sheet sd"},
-    h("div",{style:{width:36,height:4,background:"var(--border)",borderRadius:999,margin:"0 auto 16px"}}),
-    ...children
-  );
-  ov.appendChild(sh);return ov;
+
+  html += '</div>';
+  container.innerHTML = html;
 }
 
-// ── MAIN RENDER (called only on state changes, NOT every second) ───────────
-function render(){
-  const t=T[S.lang];
-  const rtl=S.lang==="ar";
-  const MO=S.lang==="ar"?MAR:MFR;
-  const {tot,totPaid,totRem}=totals();
-  const pct=(totPaid/tot*100);
-
-  document.body.classList.toggle("dark",S.dark);
-  document.documentElement.setAttribute("dir",rtl?"rtl":"ltr");
-  document.documentElement.setAttribute("lang",S.lang);
-
-  const now=new Date();
-  const tStr=now.toLocaleTimeString(rtl?"ar-DZ":"fr-DZ",{hour:"2-digit",minute:"2-digit",second:"2-digit"});
-  const dStr=now.toLocaleDateString(rtl?"ar-DZ":"fr-DZ",{weekday:"long",year:"numeric",month:"long",day:"numeric"});
-  const todayExpAmt=S.exps.filter(e=>e.date===toDay()).reduce((s,e)=>s+e.amount,0);
-  const monthExpAmt=S.exps.filter(e=>(e.date||"").startsWith(toMonth())).reduce((s,e)=>s+e.amount,0);
-
-  // ── HEADER ──
-  const hdr=h("div",{style:{background:"var(--blue)",padding:"0 12px",position:"sticky",top:0,zIndex:100,boxShadow:"0 2px 8px rgba(0,0,0,0.18)"}},
-    h("div",{style:{maxWidth:500,margin:"0 auto",display:"flex",alignItems:"center",justifyContent:"space-between",height:52}},
-      h("div",{style:{display:"flex",alignItems:"center",gap:8}},
-        h("div",{style:{width:34,height:34,borderRadius:999,background:"rgba(255,255,255,0.2)",display:"flex",alignItems:"center",justifyContent:"center",fontSize:18}},"💰"),
-        h("div",{},
-          h("div",{style:{fontSize:15,fontWeight:900,color:"#fff",lineHeight:1.1}},t.app),
-          h("div",{style:{fontSize:9,color:"rgba(255,255,255,0.75)"}},t.sub)
-        )
-      ),
-      h("div",{style:{display:"flex",gap:6,alignItems:"center"}},
-        h("button",{className:"bs",onClick:()=>{S.lang=S.lang==="ar"?"fr":"ar";persist();render();},
-          style:{background:"rgba(255,255,255,0.2)",color:"#fff",border:"none",padding:"6px 10px",borderRadius:999,cursor:"pointer",fontFamily:"Cairo",fontWeight:700,fontSize:11}},
-          S.lang==="ar"?"FR":"ع"),
-        h("button",{className:"bs",onClick:()=>{S.dark=!S.dark;persist();render();},
-          style:{background:"rgba(255,255,255,0.2)",color:"#fff",border:"none",padding:"6px 10px",borderRadius:999,cursor:"pointer",fontSize:14}},
-          S.dark?"☀️":"🌙"),
-        h("button",{className:"bs",onClick:()=>{S.setMod=true;render();},
-          style:{background:"rgba(255,255,255,0.2)",color:"#fff",border:"none",padding:"6px 10px",borderRadius:999,cursor:"pointer",fontSize:14}},"⚙️")
-      )
-    )
-  );
-
-  // ── DATE/TIME BAR (IDs for live update) ──
-  const dtBar=h("div",{style:{background:S.dark?"#1c1e21":"#e4e6eb",padding:"6px 14px",borderBottom:"1px solid var(--border)"}},
-    h("div",{style:{maxWidth:500,margin:"0 auto",display:"flex",justifyContent:"space-between",alignItems:"center"}},
-      h("div",{id:"clock-date",style:{fontSize:10,color:"var(--sub)",overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap",flex:1}},dStr),
-      h("div",{id:"clock-time",style:{fontSize:12,fontWeight:900,color:"var(--blue)",fontVariantNumeric:"tabular-nums",flexShrink:0,marginRight:rtl?8:0,marginLeft:rtl?0:8}},tStr)
-    )
-  );
-
-  // ── TABS ──
-  const tabBar=h("div",{style:{background:"var(--hdr)",borderBottom:"1px solid var(--border)",padding:"0 10px",overflowX:"auto",WebkitOverflowScrolling:"touch",whiteSpace:"nowrap",boxShadow:"var(--shadow)"}},
-    h("div",{style:{maxWidth:500,margin:"0 auto",display:"inline-flex",gap:4,padding:"6px 0"}},
-      ...[["dash","📊",t.dash],["debts","💳",t.debts],["exp","🛒",t.exp],["hist","📋",t.hist],["cnt","📞",t.cnt]].map(([id,ic,lb])=>
-        h("button",{className:"pill",onClick:()=>{if(S.tab===id)return;S.tab=id;render();},
-          style:{background:S.tab===id?"var(--blue)":"var(--inp)",color:S.tab===id?"#fff":"var(--sub)",border:`1px solid ${S.tab===id?"var(--blue)":"var(--border)"}`}},
-          ic+" "+lb)
-      )
-    )
-  );
-
-  // ── CONTENT ──
-  const content=h("div",{style:{maxWidth:500,margin:"0 auto",padding:"12px 10px 88px"},className:"fu"});
-
-  // ════ DASHBOARD ════
-  if(S.tab==="dash"){
-    content.appendChild(h("div",{style:{background:"linear-gradient(135deg,var(--blue),var(--blue4))",borderRadius:14,padding:"18px 16px",marginBottom:10,color:"#fff",boxShadow:"0 4px 16px rgba(24,119,242,0.3)"}},
-      h("div",{style:{display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:12}},
-        h("div",{},h("div",{style:{fontSize:10,opacity:0.8,marginBottom:2}},t.totDebt),h("div",{style:{fontSize:24,fontWeight:900}},fmt(tot,S.cur,S.lang))),
-        h("div",{style:{textAlign:rtl?"left":"right"}},h("div",{style:{fontSize:10,opacity:0.8,marginBottom:2}},t.rem),h("div",{style:{fontSize:20,fontWeight:900,color:"#ffcc00"}},fmt(totRem,S.cur,S.lang)))
-      ),
-      h("div",{style:{height:10,borderRadius:999,background:"rgba(255,255,255,0.25)",overflow:"hidden",marginBottom:6}},
-        h("div",{style:{height:"100%",borderRadius:999,width:`${pct}%`,background:"linear-gradient(90deg,#42b72a,#a8e063)",transition:"width 1.1s"}})
-      ),
-      h("div",{style:{display:"flex",justifyContent:"space-between",fontSize:10,opacity:0.85}},
-        h("span",{},t.paid+": "+fmt(totPaid,S.cur,S.lang)),
-        h("span",{style:{fontWeight:900}},pct.toFixed(1)+"%")
-      )
-    ));
-
-    const sr=h("div",{style:{display:"grid",gridTemplateColumns:"1fr 1fr",gap:8,marginBottom:10}});
-    [{l:t.todayExp,v:fmt(todayExpAmt,S.cur,S.lang),c:"var(--blue)",ic:"🛒"},{l:t.thisMonth,v:fmt(monthExpAmt,S.cur,S.lang),c:"var(--green)",ic:"📅"}].forEach(s=>{
-      sr.appendChild(h("div",{className:"fb-card",style:{textAlign:"center",padding:"12px 8px"}},
-        h("div",{style:{fontSize:18,marginBottom:4}},s.ic),
-        h("div",{style:{fontSize:14,fontWeight:900,color:s.c}},s.v),
-        h("div",{style:{fontSize:10,color:"var(--sub)",marginTop:2}},s.l)
-      ));
-    });
-    content.appendChild(sr);
-
-    S.debts.forEach(d=>{
-      const rem=getRem(d.id);const prog=getProg(d.id);const done=rem===0;const pl=getPL(d.id);
-      const dc=h("div",{className:"fb-card hov",style:{borderRight:`4px solid ${done?"var(--green)":d.active?"var(--blue)":"var(--border)"}`,cursor:d.active&&!done?"pointer":"default",padding:"14px",transition:"box-shadow 0.2s"}});
-      if(d.active&&!done){
-        dc.addEventListener("click",()=>{
-          S.payMod=d;
-          S.payF={amount:String(d.monthly),note:"",month:new Date().getMonth()+1,year:new Date().getFullYear()};
-          render();
-        });
-      }
-      dc.appendChild(h("div",{style:{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:10}},
-        h("div",{style:{display:"flex",alignItems:"center",gap:10}},
-          h("div",{style:{width:44,height:44,borderRadius:999,background:d.color+"18",display:"flex",alignItems:"center",justifyContent:"center",fontSize:22,border:`2px solid ${d.color}40`,flexShrink:0}},d.icon),
-          h("div",{},
-            h("div",{style:{fontWeight:700,fontSize:14}},debtName(d)),
-            h("div",{style:{fontSize:10,marginTop:2}},
-              done?h("span",{style:{color:"var(--green)"}},`✅ ${t.done}`):
-              d.active?h("span",{className:"pulse",style:{color:"var(--green)"}},`● ${t.active}`):
-              h("span",{style:{color:"var(--mut)"}},`⏸ ${t.wait}`)
-            )
-          )
-        ),
-        h("div",{style:{textAlign:rtl?"left":"right",flexShrink:0}},
-          h("div",{style:{fontSize:10,color:"var(--sub)"}},t.rem),
-          h("div",{style:{fontSize:15,fontWeight:900,color:done?"var(--green)":"var(--red)"}},fmt(rem,S.cur,S.lang))
-        )
-      ));
-      dc.appendChild(progBar(prog,d.color));
-      dc.appendChild(h("div",{style:{display:"flex",justifyContent:"space-between",marginTop:5,fontSize:10,color:"var(--sub)"}},
-        h("span",{},fmt(getPaid(d.id),S.cur,S.lang)),
-        h("span",{style:{fontWeight:700,color:d.color}},prog.toFixed(1)+"%")
-      ));
-      if(!done&&pl.length>0){
-        dc.appendChild(h("div",{style:{marginTop:8,padding:"6px 10px",background:"var(--inp)",borderRadius:8,fontSize:10,display:"flex",justifyContent:"space-between"}},
-          h("span",{style:{color:"var(--sub)"}},t.lastPay+":"),
-          h("span",{style:{color:d.color,fontWeight:700}},fmt(pl[0][1].amount,S.cur,S.lang)+" — "+pl[0][0].replace("-","/"))
-        ));
-      }
-      if(d.active&&!done){
-        dc.appendChild(h("div",{style:{marginTop:10,padding:"10px",background:"var(--blue3)",borderRadius:10,textAlign:"center",border:"1px dashed var(--blue)"}},
-          h("span",{style:{color:"var(--blue)",fontSize:12,fontWeight:700}},`💸 ${t.addPay}`)
-        ));
-      }
-      content.appendChild(dc);
-    });
-
-    content.appendChild(h("button",{className:"bs",onClick:()=>{S.expMod=true;render();},
-      style:{width:"100%",padding:"13px",background:"var(--green)",color:"#fff",border:"none",borderRadius:10,cursor:"pointer",fontFamily:"Cairo",fontWeight:700,fontSize:13,marginTop:4}},
-      "🛒 + "+t.newExp));
-  }
-
-  // ════ DEBTS ════
-  else if(S.tab==="debts"){
-    S.debts.forEach(d=>{
-      const paid=getPaid(d.id);const rem=getRem(d.id);const prog=getProg(d.id);const done=rem===0;const months=Math.ceil(rem/d.monthly);
-      const dc=h("div",{className:"fb-card",style:{marginBottom:14,borderTop:`3px solid ${d.color}`}});
-      dc.appendChild(h("div",{style:{display:"flex",alignItems:"center",gap:12,marginBottom:14}},
-        h("div",{style:{width:50,height:50,borderRadius:999,background:d.color+"15",display:"flex",alignItems:"center",justifyContent:"center",fontSize:24,border:`2px solid ${d.color}`,flexShrink:0}},d.icon),
-        h("div",{style:{flex:1}},
-          h("div",{style:{fontWeight:900,fontSize:16}},debtName(d)),
-          h("div",{style:{display:"flex",gap:6,marginTop:5,flexWrap:"wrap"}},
-            badge2(done?`✅ ${t.done}`:d.active?`● ${t.active}`:`⏸ ${t.wait}`,`${d.color}20`,d.color),
-            !done?badge2(`${months} ${t.monthsLeft}`,"rgba(250,62,62,0.1)","var(--red)"):null
-          )
-        )
-      ));
-      const grid=h("div",{style:{display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gap:8,marginBottom:12}});
-      [{l:t.origAmt,v:fmt(d.total,S.cur,S.lang),c:"var(--sub)"},{l:t.totPaid,v:fmt(paid,S.cur,S.lang),c:"var(--green)"},{l:t.rem,v:fmt(rem,S.cur,S.lang),c:"var(--red)"}].forEach(s=>{
-        grid.appendChild(h("div",{style:{background:"var(--inp)",borderRadius:10,padding:"10px 6px",textAlign:"center",border:"1px solid var(--border)"}},
-          h("div",{style:{fontSize:12,fontWeight:900,color:s.c}},s.v),
-          h("div",{style:{fontSize:9,color:"var(--sub)",marginTop:2}},s.l)
-        ));
-      });
-      dc.appendChild(grid);
-      dc.appendChild(progBar(prog,d.color));
-      dc.appendChild(h("div",{style:{textAlign:"center",fontSize:11,color:d.color,fontWeight:700,margin:"5px 0 12px"}},prog.toFixed(2)+"%"));
-      if(d.active&&!done){
-        dc.appendChild(h("button",{className:"bs",onClick:()=>{S.payMod=d;S.payF={amount:String(d.monthly),note:"",month:new Date().getMonth()+1,year:new Date().getFullYear()};render();},
-          style:{width:"100%",padding:"12px",background:d.color,color:"#fff",border:"none",borderRadius:10,cursor:"pointer",fontFamily:"Cairo",fontWeight:700,fontSize:13,marginBottom:12}},
-          "💸 "+t.addPay));
-      }
-      const pl=getPL(d.id);
-      if(pl.length>0){
-        dc.appendChild(h("div",{style:{fontSize:11,color:"var(--sub)",fontWeight:700,marginBottom:6}},"📋 "+t.payHist));
-        const plist=h("div",{style:{maxHeight:160,overflowY:"auto",display:"grid",gap:5}});
-        pl.forEach(([k,p])=>{
-          plist.appendChild(h("div",{style:{display:"flex",justifyContent:"space-between",padding:"8px 12px",background:"var(--inp)",borderRadius:10}},
-            h("div",{},h("div",{style:{fontSize:12,fontWeight:700,color:d.color}},fmt(p.amount,S.cur,S.lang)),p.note?h("div",{style:{fontSize:10,color:"var(--sub)"}},p.note):""),
-            h("div",{style:{textAlign:rtl?"left":"right",fontSize:10,color:"var(--sub)"}},h("div",{},MO[parseInt(k.split("-")[1])-1]),h("div",{},k.split("-")[0]))
-          ));
-        });
-        dc.appendChild(plist);
-      }
-      content.appendChild(dc);
-    });
-  }
-
-  // ════ EXPENSES ════
-  else if(S.tab==="exp"){
-    content.appendChild(h("div",{style:{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:10}},
-      h("div",{style:{fontWeight:900,fontSize:17}},"🛒 "+t.exp),
-      h("button",{className:"bs",onClick:()=>{S.expMod=true;render();},
-        style:{background:"var(--blue)",color:"#fff",border:"none",borderRadius:8,padding:"9px 16px",cursor:"pointer",fontFamily:"Cairo",fontWeight:700,fontSize:12}},
-        S.lang==="ar"?"+ جديد":"+ Nouveau")
-    ));
-    const cg=h("div",{style:{display:"grid",gridTemplateColumns:"1fr 1fr",gap:8,marginBottom:10}});
-    CATS.forEach(ct=>{
-      const total=S.exps.filter(e=>e.cat===ct.id).reduce((s,e)=>s+e.amount,0);
-      cg.appendChild(h("div",{className:"fb-card",style:{textAlign:"center",padding:"12px 8px"}},
-        h("div",{style:{fontSize:20}},ct.icon),
-        h("div",{style:{fontSize:14,fontWeight:900,color:ct.color,marginTop:4}},fmt(total,S.cur,S.lang)),
-        h("div",{style:{fontSize:10,color:"var(--sub)"}},catLbl(ct.id))
-      ));
-    });
-    content.appendChild(cg);
-    const si=inp2(S.search,"text",t.search,v=>{S.search=v;render();},{borderRadius:"999px",marginBottom:"10px"});
-    content.appendChild(si);
-    const filtered=S.exps.filter(e=>!S.search||e.note?.includes(S.search)||T[S.lang][e.cat]?.includes(S.search));
-    if(!filtered.length)content.appendChild(h("div",{style:{textAlign:"center",color:"var(--sub)",padding:40}},t.noExps));
-    filtered.forEach(e=>{
-      const ct=CATS.find(x=>x.id===e.cat);
-      const row=h("div",{className:"fb-card",style:{display:"flex",justifyContent:"space-between",alignItems:"center",padding:"11px 14px",borderRight:`3px solid ${ct.color}`}});
-      row.appendChild(h("div",{style:{display:"flex",gap:10,alignItems:"center"}},
-        h("div",{style:{width:36,height:36,borderRadius:999,background:ct.color+"18",display:"flex",alignItems:"center",justifyContent:"center",fontSize:18,flexShrink:0}},ct.icon),
-        h("div",{},h("div",{style:{fontSize:12,fontWeight:700}},catLbl(ct.id)),e.note?h("div",{style:{fontSize:10,color:"var(--sub)"}},e.note):"")
-      ));
-      row.appendChild(h("div",{style:{display:"flex",alignItems:"center",gap:8,flexShrink:0}},
-        h("div",{style:{textAlign:rtl?"left":"right"}},
-          h("div",{style:{fontSize:14,fontWeight:900,color:ct.color}},fmt(e.amount,S.cur,S.lang)),
-          h("div",{style:{fontSize:10,color:"var(--sub)"}},e.date)
-        ),
-        h("button",{onClick:()=>delExp(e.id),style:{background:"rgba(250,62,62,0.1)",color:"var(--red)",border:"none",borderRadius:999,width:28,height:28,cursor:"pointer",fontSize:16,display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0}},"×")
-      ));
-      content.appendChild(row);
-    });
-  }
-
-  // ════ HISTORY ════
-  else if(S.tab==="hist"){
-    content.appendChild(h("div",{style:{fontWeight:900,fontSize:17,marginBottom:14}},"📋 "+t.fullHist));
-    let any=false;
-    S.debts.forEach(d=>{
-      const pl=getPL(d.id);if(!pl.length)return;any=true;
-      const sec=h("div",{style:{marginBottom:20}});
-      sec.appendChild(h("div",{style:{display:"flex",alignItems:"center",gap:8,marginBottom:8,padding:"8px 12px",background:"var(--inp)",borderRadius:10}},
-        h("span",{style:{fontSize:18}},d.icon),
-        h("span",{style:{fontWeight:700,color:d.color,fontSize:14}},debtName(d)),
-        h("span",{style:{fontSize:10,color:"var(--sub)"}},`(${pl.length} ${t.pays})`)
-      ));
-      pl.forEach(([k,p])=>{
-        sec.appendChild(h("div",{className:"fb-card",style:{display:"flex",justifyContent:"space-between",alignItems:"center",padding:"10px 14px",borderRight:`3px solid ${d.color}`,marginBottom:5}},
-          h("div",{},h("div",{style:{fontWeight:700,color:d.color,fontSize:13}},fmt(p.amount,S.cur,S.lang)),p.note?h("div",{style:{fontSize:10,color:"var(--sub)"}},p.note):""),
-          h("div",{style:{textAlign:rtl?"left":"right"}},
-            h("div",{style:{fontSize:11,fontWeight:700,color:"var(--sub)"}},MO[parseInt(k.split("-")[1])-1]),
-            h("div",{style:{fontSize:10,color:"var(--mut)"}},k.split("-")[0])
-          )
-        ));
-      });
-      content.appendChild(sec);
-    });
-    if(!any)content.appendChild(h("div",{style:{textAlign:"center",color:"var(--sub)",padding:40}},t.noPays));
-  }
-
-  // ════ CONTACT ════
-  else if(S.tab==="cnt"){
-    content.appendChild(h("div",{style:{background:"linear-gradient(135deg,var(--blue),var(--blue4))",borderRadius:14,padding:"20px 16px",textAlign:"center",marginBottom:14,color:"#fff",boxShadow:"0 4px 16px rgba(24,119,242,0.3)"}},
-      h("div",{style:{fontSize:36,marginBottom:8}},"💰"),
-      h("div",{style:{fontSize:18,fontWeight:900,marginBottom:4}},t.app),
-      h("div",{style:{fontSize:11,opacity:0.85}},t.contDesc),
-      h("div",{style:{fontSize:10,opacity:0.7,marginTop:4}},t.ver+" "+VER)
-    ));
-    [
-      {href:`https://wa.me/${PHONE.replace("+","")}`,bg:"linear-gradient(135deg,#25D366,#128C7E)",icon:"💬",name:"WhatsApp",info:PHONE},
-      {href:`https://t.me/${PHONE.replace("+","")}`,bg:"linear-gradient(135deg,#0088cc,#006ba3)",icon:"✈️",name:"Telegram",info:PHONE},
-      {href:"https://facebook.com",bg:"linear-gradient(135deg,#1877F2,#0c5ed4)",icon:"📘",name:"Facebook",info:"Zerrouki"},
-      {href:`tel:${PHONE}`,bg:"linear-gradient(135deg,#42b72a,#2d8a1e)",icon:"📞",name:t.call,info:PHONE},
-    ].forEach(b=>{
-      const a=h("a",{href:b.href,target:"_blank",rel:"noopener noreferrer",style:{textDecoration:"none"}});
-      a.appendChild(h("button",{className:"cbtn",style:{background:b.bg,direction:rtl?"rtl":"ltr"}},
-        h("span",{style:{fontSize:24,flexShrink:0}},b.icon),
-        h("div",{style:{textAlign:rtl?"right":"left"}},
-          h("div",{style:{fontWeight:900}},b.name),
-          h("div",{style:{fontSize:11,opacity:0.85}},b.info)
-        )
-      ));
-      content.appendChild(a);
-    });
-  }
-
-  // ── BOTTOM NAV ──
-  const nav=h("div",{style:{position:"fixed",bottom:0,left:0,right:0,background:"var(--nav)",borderTop:"1px solid var(--border)",padding:"6px 0 max(8px,env(safe-area-inset-bottom))",zIndex:99,boxShadow:"0 -2px 6px rgba(0,0,0,0.08)"}},
-    h("div",{style:{display:"flex",justifyContent:"space-around",maxWidth:500,margin:"0 auto"}},
-      ...[["dash","📊",t.dash],["debts","💳",t.debts],["exp","🛒",t.exp],["hist","📋",t.hist],["cnt","📞",t.cnt]].map(([id,ic,lb])=>
-        h("button",{className:"bs",onClick:()=>{if(S.tab===id)return;S.tab=id;render();},
-          style:{display:"flex",flexDirection:"column",alignItems:"center",gap:1,padding:"4px 12px",background:"transparent",border:"none",cursor:"pointer",color:S.tab===id?"var(--blue)":"var(--sub)",fontFamily:"Cairo",fontWeight:700,fontSize:9}},
-          h("span",{style:{fontSize:S.tab===id?23:19,transition:"font-size 0.15s"}},ic),lb)
-      )
-    )
-  );
-
-  // ── PAY MODAL ──
-  let payModalEl=null;
-  if(S.payMod){
-    const d=S.payMod;
-    payModalEl=sheetMod([
-      h("div",{style:{display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:16}},
-        h("div",{},
-          h("div",{style:{fontWeight:900,fontSize:16}},"💸 "+t.addPay),
-          h("div",{style:{fontSize:11,color:d.color,marginTop:2}},debtName(d)+" — "+t.rem+": "+fmt(getRem(d.id),S.cur,S.lang))
-        ),
-        h("button",{onClick:()=>{S.payMod=null;render();},style:{background:"var(--inp)",border:"1px solid var(--border)",color:"var(--sub)",padding:"5px 11px",borderRadius:999,cursor:"pointer",fontSize:15}},"✕")
-      ),
-      lbl2(t.amt),inp2(S.payF.amount,"number","1000000",v=>{S.payF.amount=v;}),
-      h("div",{style:{height:10}}),
-      h("div",{style:{display:"grid",gridTemplateColumns:"1fr 1fr",gap:10}},
-        h("div",{},lbl2(t.month),sel2(S.payF.month,MO.map((m,i)=>[i+1,m]),v=>{S.payF.month=Number(v);render();})),
-        h("div",{},lbl2(t.year),sel2(S.payF.year,[2026,2027,2028,2029,2030].map(y=>[y,y]),v=>{S.payF.year=Number(v);render();}))
-      ),
-      h("div",{style:{height:10}}),
-      lbl2(t.note),inp2(S.payF.note,"text",t.notePh,v=>{S.payF.note=v;}),
-      h("div",{style:{height:12}}),
-      h("button",{className:"bs",onClick:doPayment,style:{width:"100%",padding:"13px",background:d.color,color:"#fff",border:"none",borderRadius:10,cursor:"pointer",fontFamily:"Cairo",fontWeight:700,fontSize:14}},t.okPay)
-    ],()=>{S.payMod=null;render();});
-  }
-
-  // ── EXP MODAL ──
-  let expModalEl=null;
-  if(S.expMod){
-    expModalEl=sheetMod([
-      h("div",{style:{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:16}},
-        h("div",{style:{fontWeight:900,fontSize:16}},"🛒 "+t.newExp),
-        h("button",{onClick:()=>{S.expMod=false;render();},style:{background:"var(--inp)",border:"1px solid var(--border)",color:"var(--sub)",padding:"5px 11px",borderRadius:999,cursor:"pointer",fontSize:15}},"✕")
-      ),
-      lbl2(t.typ),
-      h("div",{style:{display:"grid",gridTemplateColumns:"1fr 1fr",gap:8,marginBottom:10}},
-        ...CATS.map(ct=>h("button",{className:"bs",onClick:()=>{S.expF.cat=ct.id;render();},
-          style:{padding:"10px",background:S.expF.cat===ct.id?ct.color+"20":"var(--inp)",border:`1px solid ${S.expF.cat===ct.id?ct.color:"var(--border)"}`,color:S.expF.cat===ct.id?ct.color:"var(--sub)",borderRadius:10,cursor:"pointer",fontFamily:"Cairo",fontWeight:700,fontSize:12}},
-          ct.icon+" "+catLbl(ct.id)))
-      ),
-      lbl2(t.amt),inp2(S.expF.amount,"number","500000",v=>{S.expF.amount=v;}),
-      h("div",{style:{height:10}}),
-      lbl2(t.dat),inp2(S.expF.date,"date","",v=>{S.expF.date=v;}),
-      h("div",{style:{height:10}}),
-      lbl2(t.note),inp2(S.expF.note,"text",S.lang==="ar"?"مثال: خضر من السوق":"Ex: légumes marché",v=>{S.expF.note=v;}),
-      h("div",{style:{height:12}}),
-      h("button",{className:"bs",onClick:doExp,style:{width:"100%",padding:"13px",background:"var(--green)",color:"#fff",border:"none",borderRadius:10,cursor:"pointer",fontFamily:"Cairo",fontWeight:700,fontSize:14}},t.okExp)
-    ],()=>{S.expMod=false;render();});
-  }
-
-  // ── SETTINGS MODAL ──
-  let setModalEl=null;
-  if(S.setMod){
-    setModalEl=sheetMod([
-      h("div",{style:{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:18}},
-        h("div",{style:{fontWeight:900,fontSize:16}},"⚙️ "+t.set),
-        h("button",{onClick:()=>{S.setMod=false;render();},style:{background:"var(--inp)",border:"1px solid var(--border)",color:"var(--sub)",padding:"5px 11px",borderRadius:999,cursor:"pointer",fontSize:15}},"✕")
-      ),
-      h("div",{style:{background:"var(--inp)",borderRadius:12,padding:14,marginBottom:10,display:"flex",justifyContent:"space-between",alignItems:"center"}},
-        h("div",{style:{display:"flex",gap:10,alignItems:"center"}},
-          h("span",{style:{fontSize:20}},S.dark?"🌙":"☀️"),
-          h("div",{style:{fontWeight:700,fontSize:13}},S.dark?t.dark:t.light)
-        ),
-        h("div",{onClick:()=>{S.dark=!S.dark;persist();render();},
-          style:{width:48,height:26,borderRadius:999,background:S.dark?"var(--blue)":"#ccc",position:"relative",cursor:"pointer",transition:"background 0.3s"}},
-          h("div",{style:{width:20,height:20,borderRadius:"50%",background:"#fff",position:"absolute",top:3,left:S.dark?24:4,transition:"left 0.25s"}})
-        )
-      ),
-      h("div",{style:{background:"var(--inp)",borderRadius:12,padding:14,marginBottom:10}},
-        h("div",{style:{fontWeight:700,fontSize:13,marginBottom:10}},"🌍 "+t.lang),
-        h("div",{style:{display:"grid",gridTemplateColumns:"1fr 1fr",gap:8}},
-          ...[["ar","عربي 🇩🇿"],["fr","Français 🇫🇷"]].map(([l,lb])=>
-            h("button",{className:"bs",onClick:()=>{S.lang=l;persist();render();},
-              style:{padding:"10px",background:S.lang===l?"var(--blue)":"var(--card)",color:S.lang===l?"#fff":"var(--sub)",border:`1px solid ${S.lang===l?"var(--blue)":"var(--border)"}`,borderRadius:10,cursor:"pointer",fontFamily:"Cairo",fontWeight:700,fontSize:12}},lb)
-          )
-        )
-      ),
-      h("div",{style:{background:"var(--inp)",borderRadius:12,padding:14,marginBottom:10}},
-        h("div",{style:{fontWeight:700,fontSize:13,marginBottom:10}},"💱 "+t.cur),
-        h("div",{style:{display:"grid",gridTemplateColumns:"1fr 1fr",gap:8}},
-          ...[["dzd","🇩🇿 دينار"],["eur","🇪🇺 يورو"]].map(([c,lb])=>
-            h("button",{className:"bs",onClick:()=>{S.cur=c;persist();render();},
-              style:{padding:"10px",background:S.cur===c?"var(--blue)":"var(--card)",color:S.cur===c?"#fff":"var(--sub)",border:`1px solid ${S.cur===c?"var(--blue)":"var(--border)"}`,borderRadius:10,cursor:"pointer",fontFamily:"Cairo",fontWeight:700,fontSize:12}},lb)
-          )
-        )
-      ),
-      h("div",{style:{background:"var(--inp)",borderRadius:12,padding:14,marginBottom:10}},
-        h("div",{style:{fontWeight:700,fontSize:13,marginBottom:8}},"🔔 "+t.notifEn),
-        S.notif
-          ?h("div",{style:{color:"var(--green)",fontWeight:700,fontSize:12}},t.notifOn)
-          :h("button",{className:"bs",onClick:reqNotif,style:{width:"100%",padding:"11px",background:"rgba(247,201,72,0.15)",color:"#b8860b",border:"1px solid rgba(247,201,72,0.4)",borderRadius:10,cursor:"pointer",fontFamily:"Cairo",fontWeight:700,fontSize:12}},
-              "🔔 "+t.notifEn)
-      ),
-      h("div",{style:{textAlign:"center",fontSize:11,color:"var(--sub)",padding:8}},t.ver+" "+VER+" | © 2026 Zerrouki")
-    ],()=>{S.setMod=false;render();});
-  }
-
-  // ── ASSEMBLE ──
-  const app=document.getElementById("app");
-  const wrap=h("div",{});
-  wrap.appendChild(hdr);
-  wrap.appendChild(dtBar);
-  wrap.appendChild(tabBar);
-  wrap.appendChild(content);
-  wrap.appendChild(nav);
-  if(payModalEl)wrap.appendChild(payModalEl);
-  if(expModalEl)wrap.appendChild(expModalEl);
-  if(setModalEl)wrap.appendChild(setModalEl);
-
-  // preserve toast if exists
-  const oldToast=document.getElementById("toast-el");
-  app.innerHTML="";
-  app.appendChild(wrap);
-  if(oldToast&&oldToast.style.display!=="none"){
-    app.appendChild(oldToast);
-  }
+function nextMonth() {
+  currentMonth++;
+  if (currentMonth > 11) { currentMonth = 0; currentYear++; }
+  generateCalendar();
 }
 
-// ── START ──
-render();
-tickClock();
+function prevMonth() {
+  currentMonth--;
+  if (currentMonth < 0) { currentMonth = 11; currentYear--; }
+  generateCalendar();
+}
+
+function today() {
+  currentMonth = new Date().getMonth();
+  currentYear  = new Date().getFullYear();
+  generateCalendar();
+}
+
+// Auto-refresh at midnight to update "today"
+function scheduleAutoRefresh() {
+  const now = new Date();
+  const msUntilMidnight =
+    new Date(now.getFullYear(), now.getMonth(), now.getDate()+1) - now;
+  setTimeout(() => {
+    location.reload();
+  }, msUntilMidnight);
+}
+
+renderTodayCard();
+generateCalendar();
+scheduleAutoRefresh();
 </script>
 </body>
 </html>
